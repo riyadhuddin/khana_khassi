@@ -6,8 +6,6 @@ import 'package:khana_khassi/src/widgets/bottom_navigation_icons.dart';
 import 'package:khana_khassi/src/widgets/categories.dart';
 import 'package:khana_khassi/src/widgets/feature_product.dart';
 import 'package:khana_khassi/src/widgets/popular.dart';
-import 'package:khana_khassi/src/widgets/small_floating_button.dart';
-
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
