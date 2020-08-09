@@ -20,7 +20,7 @@ class _ShoppingBagState extends State<ShoppingBag> {
         backgroundColor: white,
         elevation: 0,
         centerTitle: true,
-        title: CustomText(text: "Shopping Bag"),
+        title: CustomText(text: "Shopping Bag",weight: FontWeight.bold,),
         actions: [
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
@@ -80,7 +80,37 @@ class _ShoppingBagState extends State<ShoppingBag> {
               ),
               child: Row(
                 children: [
-                  Text("Oka"),
+                  Image.network(
+                    "https://cdn.pixabay.com/${product.image}",
+                    fit: BoxFit.fill,
+                    height: 120,
+                    width: 120,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: RichText(text: TextSpan(//wrap with row
+                          children: [
+                            TextSpan(
+                              text: product.name + "\n",
+                              style: TextStyle(color: black,fontSize: 20,),
+                            ),
+                            TextSpan(
+                              text: "\$"+product.price.toString() + "\n",
+                              style: TextStyle(color: black,fontSize: 18,fontWeight: FontWeight.bold,),
+                            ),
+                          ],
+                        ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 40,
+                      ),
+                      IconButton(icon: Icon(Icons.delete), onPressed: null)
+                    ],
+                  ),
                 ],
               ),
             ),
