@@ -61,6 +61,32 @@ class _ShoppingBagState extends State<ShoppingBag> {
         ],
       ),
       backgroundColor: white,
+      body: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Container(
+              height: 120,
+              width: MediaQuery.of(context).size.width - 10,
+              decoration: BoxDecoration(
+                color: white,
+                boxShadow: [
+                  BoxShadow(
+                    color: red[100],
+                    offset: Offset(3,5),
+                    blurRadius: 30,
+                  ),
+                ],
+              ),
+              child: Row(
+                children: [
+                  Text("Oka"),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
