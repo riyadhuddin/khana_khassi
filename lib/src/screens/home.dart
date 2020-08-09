@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
                     text: "What would you like to eat?",
                     size: 20,
                     weight: FontWeight.bold,
-                    color: orange[300],
+                    color: red[200],
                   )
                   //padding to text
                 ),

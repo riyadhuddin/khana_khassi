@@ -19,8 +19,9 @@ class MyApp extends StatelessWidget {
         // This makes the visual density adapt to the platform that you run
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: LoginScreen(),
-      //HomePage(),
+      home: HomePage(),
+      //LoginScreen(),
+
     );
   }
 }
