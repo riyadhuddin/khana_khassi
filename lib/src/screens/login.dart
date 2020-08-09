@@ -55,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: "Password",
-                      icon: Icon(Icons.email),
+                      icon: Icon(Icons.lock),
                     ),
                   ),
                 ),
@@ -79,6 +79,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CustomText(text: "Register here",size: 22,),
+              ],
             ),
           ],
         ),
