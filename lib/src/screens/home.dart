@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:khana_khassi/src/helpers/common_colors.dart';
+import 'package:khana_khassi/src/helpers/screen_navigation.dart';
+import 'package:khana_khassi/src/screens/bag.dart';
 import 'package:khana_khassi/src/widgets/CustomText.dart';
 import 'package:khana_khassi/src/widgets/bottom_navigation_icons.dart';
 import 'package:khana_khassi/src/widgets/categories.dart';
@@ -105,6 +107,9 @@ class _HomePageState extends State<HomePage> {
               image: "photo/2013/03/29/13/39/home-97609_1280.png",
             ),
             BottomNavIcon(
+              onTap: (){
+                changeScreen(context, ShoppingBag());
+              },
               name: "Bag",
               image: "photo/2013/07/13/10/13/carryout-bag-156779_1280.png",
             ),
