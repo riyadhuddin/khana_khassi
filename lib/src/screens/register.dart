@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:khana_khassi/src/helpers/common_colors.dart';
 import 'package:khana_khassi/src/helpers/screen_navigation.dart';
-import 'package:khana_khassi/src/screens/register.dart';
+import 'package:khana_khassi/src/screens/login.dart';
 import 'package:khana_khassi/src/widgets/CustomText.dart';
-class LoginScreen extends StatefulWidget {
+class RegisterScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _RegisterScreenState createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,8 +36,27 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: const EdgeInsets.all(12.0),
               child: Container(
                 decoration: BoxDecoration(
-                  border: Border.all(color: grey),
-                  borderRadius: BorderRadius.circular(15)
+                    border: Border.all(color: grey),
+                    borderRadius: BorderRadius.circular(15)
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: "User Name",
+                      icon: Icon(Icons.person),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    border: Border.all(color: grey),
+                    borderRadius: BorderRadius.circular(15)
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 8.0),
@@ -83,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CustomText(text: "Login",color: white,size: 22,),
+                      CustomText(text: "Register",color: white,size: 22,),
                     ],
                   ),
                 ),
@@ -91,12 +110,12 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             GestureDetector(
               onTap: (){
-                changeScreen(context, RegisterScreen());
+                changeScreen(context, LoginScreen());
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CustomText(text: "Register here",size: 22,),
+                  CustomText(text: "Login here",size: 22,),
                 ],
               ),
             ),
