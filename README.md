@@ -1,6 +1,6 @@
 # khana_khassi
-A food ordering application
-It has three parts,
+A food ordering application,
+It has three parts.
 1. Restaurant owner - List foods and price, Coupon, reward points, featuring.
 2. Customer - can book table or order delivery, review,report,rating,share.
 3. Admin & App AI - recommendation , banning, featuring, price and product quality based on customer review.
