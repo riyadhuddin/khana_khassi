@@ -6,6 +6,11 @@ class Product {
   final String vendor;
   final bool wishList;
 
-  Product({ this.name, this.image, this.price,this.rating, this.vendor, this.wishList});
-
+  Product(
+      {this.name,
+      this.image,
+      this.price,
+      this.rating,
+      this.vendor,
+      this.wishList});
 }

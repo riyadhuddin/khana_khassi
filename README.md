@@ -5,7 +5,7 @@ It has three parts.
 2. Customer - can book table or order delivery, review,report,rating,share.
 3. Admin & App AI - recommendation , banning, featuring, price and product quality based on customer review.
 
-# Splash UI 
+# Splash UI
 ![Details](assets/screenshots/UI_Photo/s1.png)
 # Popular Foods
 ![Popular](assets/screenshots/UI_Photo/s2.png)

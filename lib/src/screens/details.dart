@@ -32,12 +32,16 @@ class _DetailsState extends State<Details> {
               height: 300,
               child: Stack(
                 children: <Widget>[
-                  Carousel(//wrap with column - stack
+                  Carousel(
+                    //wrap with column - stack
                     images: [
-                      NetworkImage("https://cdn.pixabay.com/${widget.product.image}"),
+                      NetworkImage(
+                          "https://cdn.pixabay.com/${widget.product.image}"),
                       //Image.network("https://cdn.pixabay.com/${widget.product.image}"),
-                      NetworkImage("https://cdn.pixabay.com/${widget.product.image}"),
-                      NetworkImage("https://cdn.pixabay.com/${widget.product.image}"),
+                      NetworkImage(
+                          "https://cdn.pixabay.com/${widget.product.image}"),
+                      NetworkImage(
+                          "https://cdn.pixabay.com/${widget.product.image}"),
                     ],
                     dotBgColor: white,
                     dotColor: grey,
@@ -49,30 +53,36 @@ class _DetailsState extends State<Details> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       IconButton(
-                          icon: Icon(Icons.arrow_back_ios,color: black,),
-                          onPressed: (){Navigator.pop(context);}
-                      ),
+                          icon: Icon(
+                            Icons.arrow_back_ios,
+                            color: black,
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          }),
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
-                        child: Stack(//add pading
+                        child: Stack(
+                          //add pading
                           children: <Widget>[
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Stack(
                                 children: <Widget>[
-                                  Image.network("https://cdn.pixabay.com/photo/2013/07/13/10/13/carryout-bag-156779_1280.png",
-                                   //wrap inside stack
+                                  Image.network(
+                                    "https://cdn.pixabay.com/photo/2013/07/13/10/13/carryout-bag-156779_1280.png",
+                                    //wrap inside stack
                                     width: 30, height: 30,
                                   ),
-                                 //positioned moved from here
+                                  //positioned moved from here
                                 ],
                               ),
                             ),
                             Positioned(
                               right: 5,
                               bottom: 0,
-
-                              child: Container(//wrap into positioned
+                              child: Container(
+                                  //wrap into positioned
                                   decoration: BoxDecoration(
                                     color: red[200],
                                     borderRadius: BorderRadius.circular(10),
@@ -85,71 +95,98 @@ class _DetailsState extends State<Details> {
                                     ],
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.only(left: 4,right: 4),
-                                    child: CustomText(text: "0",color: white,size: 18,weight: FontWeight.bold,),
-                                  )
-                              ),
-                            ),//put it into container
+                                    padding: const EdgeInsets.only(
+                                        left: 4, right: 4),
+                                    child: CustomText(
+                                      text: "0",
+                                      color: white,
+                                      size: 18,
+                                      weight: FontWeight.bold,
+                                    ),
+                                  )),
+                            ), //put it into container
                           ],
                         ),
                       ),
                     ],
-                  ),//wrap inside a row
+                  ), //wrap inside a row
                   Positioned(
-                      right: 15,
-                      bottom: 55,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: white,
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: [
-                            BoxShadow(
-                              color: grey[400],
-                              offset: Offset(2,3),
-                              blurRadius: 3,
-                            ),
-                          ],
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(6.0),
-                          child:  Icon(
-                              Icons.favorite,
-                              size: 22,
-                              color: red,
+                    right: 15,
+                    bottom: 55,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: white,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                            color: grey[400],
+                            offset: Offset(2, 3),
+                            blurRadius: 3,
                           ),
+                        ],
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(6.0),
+                        child: Icon(
+                          Icons.favorite,
+                          size: 22,
+                          color: red,
                         ),
                       ),
+                    ),
                   ),
                 ],
               ),
             ),
-            CustomText(text: widget.product.name,size: 24, weight: FontWeight.bold,),
-            CustomText(text: "\$ " + widget.product.price.toString(),size: 24, weight: FontWeight.w600,),
-            SizedBox(height: 15,),
+            CustomText(
+              text: widget.product.name,
+              size: 24,
+              weight: FontWeight.bold,
+            ),
+            CustomText(
+              text: "\$ " + widget.product.price.toString(),
+              size: 24,
+              weight: FontWeight.w600,
+            ),
+            SizedBox(
+              height: 15,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: IconButton(icon: Icon(Icons.remove, size: 28,), onPressed: (){}),
+                  child: IconButton(
+                      icon: Icon(
+                        Icons.remove,
+                        size: 28,
+                      ),
+                      onPressed: () {}),
                 ),
                 GestureDetector(
-                  onTap: (){
-
-                  },
+                  onTap: () {},
                   child: Container(
                     decoration: BoxDecoration(
                       color: red,
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.fromLTRB(28,12,28,12),
-                      child: CustomText(text: "Add To Bag",size: 22,color: white,),
+                      padding: const EdgeInsets.fromLTRB(28, 12, 28, 12),
+                      child: CustomText(
+                        text: "Add To Bag",
+                        size: 22,
+                        color: white,
+                      ),
                     ),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: IconButton(icon: Icon(Icons.add, size: 28,), onPressed: (){}),
+                  child: IconButton(
+                      icon: Icon(
+                        Icons.add,
+                        size: 28,
+                      ),
+                      onPressed: () {}),
                 ),
               ],
             ),

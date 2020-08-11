@@ -1,27 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:khana_khassi/src/providers/auth.dart';
 import 'package:khana_khassi/src/screens/home.dart';
 import 'package:khana_khassi/src/screens/login.dart';
+import 'package:khana_khassi/src/screens/register.dart';
+import 'package:khana_khassi/src/widgets/loading.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  WidgetsFlutterBinding.ensureInitialized(); //init
+  runApp(MultiProvider(
+    providers: [ChangeNotifierProvider.value(value: AuthProvider.initialize())],
+    child: MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Khana Khassi',
       theme: ThemeData(
-        // This is the theme of your application
         primarySwatch: Colors.blue,
-        // This makes the visual density adapt to the platform that you run
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(),
+      home: ScreenController(),
       //LoginScreen(),
+    ),
+  ));
+}
 
-    );
+class ScreenController extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final auth = Provider.of<AuthProvider>(context);
+    switch (auth.status) {
+      case Status.Uninitialized:
+        return RegisterScreen();
+      case Status.Unauthenticated:
+      case Status.Authenticating:
+        return LoginScreen();
+      case Status.Authenticated:
+        return HomePage();
+      default:
+        return LoginScreen();
+    }
   }
 }

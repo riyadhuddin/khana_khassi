@@ -9,7 +9,13 @@ class ShoppingBag extends StatefulWidget {
 }
 
 class _ShoppingBagState extends State<ShoppingBag> {
-  Product product = Product(name: "Meatball Ravoli",price: 5.1,rating: 4.2,vendor: "Pasta",wishList: false,image: "photo/2015/09/30/06/26/meatball-ravioli-964959_1280.jpg");
+  Product product = Product(
+      name: "Meatball Ravoli",
+      price: 5.1,
+      rating: 4.2,
+      vendor: "Pasta",
+      wishList: false,
+      image: "photo/2015/09/30/06/26/meatball-ravioli-964959_1280.jpg");
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +26,10 @@ class _ShoppingBagState extends State<ShoppingBag> {
         backgroundColor: white,
         elevation: 0,
         centerTitle: true,
-        title: CustomText(text: "Shopping Bag",weight: FontWeight.bold,),
+        title: CustomText(
+          text: "Shopping Bag",
+          weight: FontWeight.bold,
+        ),
         actions: [
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
@@ -28,7 +37,8 @@ class _ShoppingBagState extends State<ShoppingBag> {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.all(12),
-                  child: Image.network("https://cdn.pixabay.com/photo/2013/07/13/10/13/carryout-bag-156779_1280.png",
+                  child: Image.network(
+                    "https://cdn.pixabay.com/photo/2013/07/13/10/13/carryout-bag-156779_1280.png",
                     //wrap inside stack
                     width: 30, height: 30,
                   ),
@@ -36,8 +46,8 @@ class _ShoppingBagState extends State<ShoppingBag> {
                 Positioned(
                   right: 5,
                   bottom: 2,
-
-                  child: Container(//wrap into positioned
+                  child: Container(
+                      //wrap into positioned
                       decoration: BoxDecoration(
                         color: red[200],
                         borderRadius: BorderRadius.circular(10),
@@ -50,10 +60,14 @@ class _ShoppingBagState extends State<ShoppingBag> {
                         ],
                       ),
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 4,right: 4),
-                        child: CustomText(text: "0",color: white,size: 18,weight: FontWeight.bold,),
-                      )
-                  ),
+                        padding: const EdgeInsets.only(left: 4, right: 4),
+                        child: CustomText(
+                          text: "0",
+                          color: white,
+                          size: 18,
+                          weight: FontWeight.bold,
+                        ),
+                      )),
                 ),
               ],
             ),
@@ -73,7 +87,7 @@ class _ShoppingBagState extends State<ShoppingBag> {
                 boxShadow: [
                   BoxShadow(
                     color: red[100],
-                    offset: Offset(3,5),
+                    offset: Offset(3, 5),
                     blurRadius: 30,
                   ),
                 ],
@@ -91,18 +105,27 @@ class _ShoppingBagState extends State<ShoppingBag> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: RichText(text: TextSpan(//wrap with row
-                          children: [
-                            TextSpan(
-                              text: product.name + "\n",
-                              style: TextStyle(color: black,fontSize: 20,),
-                            ),
-                            TextSpan(
-                              text: "\$"+product.price.toString() + "\n",
-                              style: TextStyle(color: black,fontSize: 18,fontWeight: FontWeight.bold,),
-                            ),
-                          ],
-                        ),
+                        child: RichText(
+                          text: TextSpan(
+                            //wrap with row
+                            children: [
+                              TextSpan(
+                                text: product.name + "\n",
+                                style: TextStyle(
+                                  color: black,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              TextSpan(
+                                text: "\$" + product.price.toString() + "\n",
+                                style: TextStyle(
+                                  color: black,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       SizedBox(

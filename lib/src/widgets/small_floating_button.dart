@@ -17,7 +17,7 @@ class SmallButton extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.all(4.0),
-          child:  Icon(icon,size: 16,color: white),
+          child: Icon(icon, size: 16, color: white),
         ),
       ),
     );

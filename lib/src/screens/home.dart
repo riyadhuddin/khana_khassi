@@ -8,6 +8,7 @@ import 'package:khana_khassi/src/widgets/bottom_navigation_icons.dart';
 import 'package:khana_khassi/src/widgets/categories.dart';
 import 'package:khana_khassi/src/widgets/feature_product.dart';
 import 'package:khana_khassi/src/widgets/popular.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -18,26 +19,29 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: white,
-      body: SafeArea(//so items do not messed up
+      body: SafeArea(
+        //so items do not messed up
         child: ListView(
           children: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CustomText(
-                    text: "What would you like to eat?",
-                    size: 20,
-                    weight: FontWeight.bold,
-                    color: red[200],
-                  )
-                  //padding to text
-                ),
+                    padding: const EdgeInsets.all(8.0),
+                    child: CustomText(
+                      text: "What would you like to eat?",
+                      size: 20,
+                      weight: FontWeight.bold,
+                      color: red[200],
+                    )
+                    //padding to text
+                    ),
                 Stack(
                   children: <Widget>[
-                    IconButton(icon: Icon(Icons.notifications_none), onPressed: (){}),
-                    Positioned(//positioning red dot on notification icon
+                    IconButton(
+                        icon: Icon(Icons.notifications_none), onPressed: () {}),
+                    Positioned(
+                      //positioning red dot on notification icon
                       top: 12,
                       right: 12,
                       child: Container(
@@ -53,10 +57,13 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            SizedBox(height: 5,),
+            SizedBox(
+              height: 5,
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Container(//add padding to container
+              child: Container(
+                //add padding to container
                 decoration: BoxDecoration(
                   color: white,
                   boxShadow: [
@@ -67,32 +74,47 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
-                child: ListTile(//search box creation
-                  leading: Icon(Icons.search,color: red,),//trailing
+                child: ListTile(
+                  //search box creation
+                  leading: Icon(
+                    Icons.search,
+                    color: red,
+                  ), //trailing
                   title: TextField(
                     decoration: InputDecoration(
                       hintText: "Find foods and restaurants",
                       border: InputBorder.none,
                     ),
                   ),
-                  trailing: Icon(Icons.filter_list,color: red,),//trailing
+                  trailing: Icon(
+                    Icons.filter_list,
+                    color: red,
+                  ), //trailing
                 ),
               ),
             ),
             SizedBox(
               height: 5,
             ),
-            Categories(),// Categories
+            Categories(), // Categories
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: CustomText(text: "Featured", size: 20,color: grey,),
+              child: CustomText(
+                text: "Featured",
+                size: 20,
+                color: grey,
+              ),
             ),
-            Featured(),//featured products
+            Featured(), //featured products
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: CustomText(text: "Popular Products", size: 20,color: grey,),
+              child: CustomText(
+                text: "Popular Products",
+                size: 20,
+                color: grey,
+              ),
             ),
-            Popular(),//Popular products here
+            Popular(), //Popular products here
           ],
         ),
       ),
@@ -103,11 +125,11 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             BottomNavIcon(
-              name:"Home",
+              name: "Home",
               image: "photo/2013/03/29/13/39/home-97609_1280.png",
             ),
             BottomNavIcon(
-              onTap: (){
+              onTap: () {
                 changeScreen(context, ShoppingBag());
               },
               name: "Bag",

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khana_khassi/src/helpers/common_colors.dart';
+
 class CustomText extends StatelessWidget {
   final String text;
   final double size;

@@ -13,17 +13,19 @@ class Popular extends StatelessWidget {
             padding: const EdgeInsets.all(0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20.0),
-              child: Image.network("https://cdn.pixabay.com/photo/2017/12/04/15/49/salmon-2997240_1280.jpg",),
+              child: Image.network(
+                "https://cdn.pixabay.com/photo/2017/12/04/15/49/salmon-2997240_1280.jpg",
+              ),
               //wrap with clipRRect and padding then stack
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Row(//add pading into row to move icon in gd location
+            child: Row(
+              //add pading into row to move icon in gd location
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 SmallButton(Icons.favorite),
-
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
@@ -36,8 +38,12 @@ class Popular extends StatelessWidget {
                       children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.all(4.0),
-                          child: Icon(Icons.star, color: yellow[900],size: 20,),
-                        ),//add pading
+                          child: Icon(
+                            Icons.star,
+                            color: yellow[900],
+                            size: 20,
+                          ),
+                        ), //add pading
                         Text("4.5"),
                       ],
                     ),
@@ -67,7 +73,6 @@ class Popular extends StatelessWidget {
                       black.withOpacity(0.1),
                       black.withOpacity(0.05),
                       black.withOpacity(0.025),
-
                     ],
                   ),
                 ),
@@ -83,21 +88,36 @@ class Popular extends StatelessWidget {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.fromLTRB(12, 8, 8, 8),
-                    child: RichText(text: TextSpan(
+                    child: RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: "Fish Steak \n",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          TextSpan(
+                              text: "by ",
+                              style: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w300)),
+                          TextSpan(
+                              text: "Tawhid \n",
+                              style: TextStyle(fontSize: 16)),
+                        ],
+                        style: TextStyle(color: white),
+                      ),
+                    ),
+                  ),
+                  RichText(
+                    text: TextSpan(
                       children: [
-                        TextSpan(text: "Fish Steak \n",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
-                        TextSpan(text: "by ",style: TextStyle(fontSize: 16,fontWeight: FontWeight.w300)),
-                        TextSpan(text: "Tawhid \n", style: TextStyle(fontSize: 16)),
-                      ],style: TextStyle(color: white),
+                        TextSpan(
+                            text: "\₵25.00 \n",
+                            style: TextStyle(
+                                fontSize: 22, fontWeight: FontWeight.bold)),
+                      ],
+                      style: TextStyle(color: white),
                     ),
-                    ),
-                  ),
-
-                  RichText(text: TextSpan(
-                    children: [
-                      TextSpan(text: "\₵25.00 \n",style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold)),
-                    ],style: TextStyle(color: white),
-                  ),
                   ),
                 ],
               ),
