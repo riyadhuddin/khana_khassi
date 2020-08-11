@@ -11,8 +11,8 @@ It has three parts.
      <td>Popular Products</td>
   </tr>
   <tr>
-    <td><img src="assets/screenshots/UI_Photo/s1.png" width=270 height=480></td>
-    <td><img src="assets/screenshots/UI_Photo/s2.png" width=270 height=480></td>
+    <td valign="top"><img src="assets/screenshots/UI_Photo/s1.png" width=270 height=480></td>
+    <td valign="top"><img src="assets/screenshots/UI_Photo/s2.png" width=270 height=480></td>
   </tr>
   <tr>
     
@@ -20,8 +20,8 @@ It has three parts.
      <td>Login</td>
   </tr>
   <tr>
-  <td><img src="assets/screenshots/UI_Photo/reg.png" width=270 height=480></td>
-    <td><img src="assets/screenshots/UI_Photo/log.png" width=270 height=480></td>
+  <td valign="top"><img src="assets/screenshots/UI_Photo/reg.png" width=270 height=480></td>
+  <td valign="top"><img src="assets/screenshots/UI_Photo/log.png" width=270 height=480></td>
   </tr>
  </table>
  
