@@ -5,9 +5,26 @@ It has three parts.
 2. Customer - can book table or order delivery, review,report,rating,share.
 3. Admin & App AI - recommendation , banning, featuring, price and product quality based on customer review.
 
-# Splash UI
-![Details]("assets/screenshots/UI_Photo/s1.png" width="300") ![Popular]("assets/screenshots/UI_Photo/s2.png" width="300")
-# Login and Registration
-![Log-Reg](assets/screenshots/UI_Photo/reg.png) ![Log-Reg](assets/screenshots/UI_Photo/log.png)
+<table>
+  <tr>
+    <td>Splash UI</td>
+     <td>Popular Products</td>
+  </tr>
+  <tr>
+    <td><img src="assets/screenshots/UI_Photo/s1.png" width=270 height=480></td>
+    <td><img src="assets/screenshots/UI_Photo/s2.png" width=270 height=480></td>
+  </tr>
+  <tr>
+    
+  <td>Registration</td>
+     <td>Login</td>
+  </tr>
+  <tr>
+  <td><img src="assets/screenshots/UI_Photo/reg.png" width=270 height=480></td>
+    <td><img src="assets/screenshots/UI_Photo/log.png" width=270 height=480></td>
+  </tr>
+ </table>
+ 
+ 
 
 Please do support if you love my works.
