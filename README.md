@@ -6,7 +6,7 @@ It has three parts.
 3. Admin & App AI - recommendation , banning, featuring, price and product quality based on customer review.
 
 # Splash UI
-![Details]("assets/screenshots/UI_Photo/s1.png")  ![Popular](assets/screenshots/UI_Photo/s2.png)
+![Details]("assets/screenshots/UI_Photo/s1.png" width="300") ![Popular]("assets/screenshots/UI_Photo/s2.png" width="300")
 # Login and Registration
 ![Log-Reg](assets/screenshots/UI_Photo/reg.png) ![Log-Reg](assets/screenshots/UI_Photo/log.png)
 
