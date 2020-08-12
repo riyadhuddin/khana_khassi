@@ -36,19 +36,20 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.network(
-                        "https://cdn.pixabay.com/photo/2015/08/19/02/27/restaurant-895427_1280.png",
+                          "https://firebasestorage.googleapis.com/v0/b/foodapp-5dea8.appspot.com/o/kkimg%2Flogo%2Flogo.png?alt=media&token=6edb5258-640f-40a5-a17e-366bc8968ee9"
+                          /* "https://cdn.pixabay.com/photo/2015/08/19/02/27/restaurant-895427_1280.png",
                         height: 240,
-                        width: 240,
-                      ),
+                        width: 240,*/
+                          ),
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.fromLTRB(15,9,27,7),
                     child: CustomText(
-                      text: "Welcome to Fokirnee Restora",
+                      text: "Welcome to Khana Khassi",
                       size: 20,
-                      color: red[200],
-                      weight: FontWeight.w600,
+                      color: orange[600],
+                      weight: FontWeight.w900,
                     ),
                   ),
                   SizedBox(
@@ -58,8 +59,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     padding: const EdgeInsets.all(12.0),
                     child: Container(
                       decoration: BoxDecoration(
-                          border: Border.all(color: grey),
-                          borderRadius: BorderRadius.circular(15)),
+                          /*border: Border.all(color: grey),
+                          borderRadius: BorderRadius.circular(15),*/
+                          color: orange[100],
+                          border: Border.all(color: red[300],width: 4),
+                          borderRadius: BorderRadius.only(
+                            bottomRight: Radius.elliptical(17, 50),
+                            bottomLeft: Radius.circular(19),
+                            topLeft: Radius.elliptical(17, 50),
+                            topRight: Radius.circular(20),
+                          ),
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: TextFormField(
@@ -77,8 +87,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     padding: const EdgeInsets.all(12.0),
                     child: Container(
                       decoration: BoxDecoration(
-                          border: Border.all(color: grey),
-                          borderRadius: BorderRadius.circular(15)),
+                          /*border: Border.all(color: grey),
+                          borderRadius: BorderRadius.circular(15),*/
+                          color: orange[100],
+                          border: Border.all(color: red[300],width: 4),
+                          borderRadius: BorderRadius.only(
+                            bottomRight: Radius.elliptical(17, 50),
+                            bottomLeft: Radius.circular(19),
+                            topLeft: Radius.elliptical(40, 9),
+                            topRight: Radius.circular(30),
+                          ),
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: TextFormField(
@@ -107,9 +126,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Container(
                         //adding gesture for auth
                         decoration: BoxDecoration(
-                            color: red[100],
-                            border: Border.all(color: grey),
-                            borderRadius: BorderRadius.circular(15)),
+                          color: orange[100],
+                          border: Border.all(color: red[300],width: 4),
+                          borderRadius: BorderRadius.only(
+                            bottomRight: Radius.elliptical(17, 15),
+                            bottomLeft: Radius.circular(30),
+                            topLeft: Radius.elliptical(40, 9),
+                            topRight: Radius.circular(20),
+                          ), //BorderRadius.circular(15)
+                        ),
                         child: Padding(
                           padding: const EdgeInsets.only(top: 10, bottom: 10),
                           child: Row(
@@ -117,8 +142,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             children: [
                               CustomText(
                                 text: "Login",
-                                color: white,
+                                color: black,
                                 size: 22,
+                                weight: FontWeight.bold,
                               ),
                             ],
                           ),

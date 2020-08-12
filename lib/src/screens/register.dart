@@ -34,16 +34,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.network(
-                        "https://cdn.pixabay.com/photo/2015/08/19/02/27/restaurant-895427_1280.png",
-                        height: 240,
-                        width: 240,
+                        "https://firebasestorage.googleapis.com/v0/b/foodapp-5dea8.appspot.com/o/kkimg%2Flogo%2Flogo.png?alt=media&token=6edb5258-640f-40a5-a17e-366bc8968ee9",
+                        //height: 240,
+                        //width: 240,
                       ),
+                      //Image.asset("assets/logo.png", width: 120, height: 120,),
+
                     ],
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: CustomText(
-                      text: "Welcome to Fokirnee Restora",
+                      text: "Welcome to Khana Khassi",
                       size: 20,
                       color: red[200],
                       weight: FontWeight.w600,
