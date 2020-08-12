@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:khana_khassi/src/models/user.dart';
@@ -9,15 +10,16 @@ class AuthProvider with ChangeNotifier {
   FirebaseAuth _auth;
   FirebaseUser _user;
   Status _status = Status.Uninitialized;
+  Firestore _firestore = Firestore.instance;
   UserServices _userServices = UserServices();
   UserModel _userModel;
 
   //getters
-  FirebaseUser get user => _user;
-
   UserModel get userModel => _userModel;
 
   Status get status => _status;
+
+  FirebaseUser get user => _user;
 
   final formkey = GlobalKey<FormState>();
 
@@ -50,16 +52,23 @@ class AuthProvider with ChangeNotifier {
       await _auth
           .createUserWithEmailAndPassword(
               email: email.text.trim(), password: password.text.trim())
-          .then((user) {
-        Map<String, dynamic> values = {
+          .then((result) {
+        _firestore.collection('users').document(result.user.uid).setData({
           "name": name.text,
           "email": email.text,
-          "id": user.user.uid,
+          "uid": result.user.uid,
+        });
+      });
+      /* .then((user) {
+        Map<String, dynamic> values = {
+
         };
         _userServices.createUser(values);
-      });
+      });*/
       return true;
     } catch (e) {
+      /*_status = Status.Unauthenticated;
+      notifyListeners();*/
       return _onError(e.toString());
     }
   }
@@ -73,7 +82,7 @@ class AuthProvider with ChangeNotifier {
 
   Future<void> _onStateChanged(FirebaseUser firebaseUser) async {
     if (firebaseUser == null) {
-      _status = Status.Uninitialized;
+      _status = Status.Unauthenticated;
     } else {
       _user = firebaseUser;
       _status = Status.Authenticated;

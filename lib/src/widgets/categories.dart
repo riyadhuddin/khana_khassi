@@ -33,6 +33,8 @@ class Categories extends StatelessWidget {
               //then copy and return it into item builder
               children: <Widget>[
                 Container(
+                  //height: 140,
+                  // width: 160,
                   decoration: BoxDecoration(
                     color: white,
                     boxShadow: [
@@ -45,11 +47,14 @@ class Categories extends StatelessWidget {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Image.network(
-                      "https://i.imgur.com/${categoriesList[index].image}",
-                      fit: BoxFit.fill,
-                      height: 80,
-                      width: 160,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(30),
+                      child: Image.network(
+                        "https://i.imgur.com/${categoriesList[index].image}",
+                        fit: BoxFit.fill,
+                        height: 80,
+                        width: 160,
+                      ),
                     ),
                   ),
                 ),
