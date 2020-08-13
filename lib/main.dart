@@ -29,7 +29,7 @@ class ScreenController extends StatelessWidget {
     final auth = Provider.of<AuthProvider>(context);
     switch (auth.status) {
       case Status.Uninitialized:
-        return RegisterScreen();
+        return Loading();
       case Status.Unauthenticated:
       case Status.Authenticating:
         return LoginScreen();

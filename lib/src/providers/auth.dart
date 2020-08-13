@@ -77,7 +77,7 @@ class AuthProvider with ChangeNotifier {
     _auth.signOut();
     _status = Status.Unauthenticated;
     notifyListeners();
-    return Future.delayed(Duration.zero);
+    return Future.delayed(Duration(microseconds: 1)); //duration.zero
   }
 
   Future<void> _onStateChanged(FirebaseUser firebaseUser) async {

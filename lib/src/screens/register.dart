@@ -39,7 +39,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         //width: 240,
                       ),
                       //Image.asset("assets/logo.png", width: 120, height: 120,),
-
                     ],
                   ),
                   Padding(

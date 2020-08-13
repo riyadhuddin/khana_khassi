@@ -68,8 +68,8 @@ class _HomePageState extends State<HomePage> {
               ),
               currentAccountPicture: Image.network(
                 "https://firebasestorage.googleapis.com/v0/b/foodapp-5dea8.appspot.com/o/profile%2Fcanthigaster-cicada-278721_640.jpg?alt=media&token=68f9922e-1a13-46fc-bfce-a5b98be5de84",
-               // height lets hope this work for testing
-                height:  MediaQuery.of(context).size.width,
+                // height lets hope this work for testing
+                height: MediaQuery.of(context).size.width,
               ),
               accountName: CustomText(
                 text: authProvider.userModel?.name,
@@ -231,13 +231,8 @@ class _HomePageState extends State<HomePage> {
               image: "photo/2013/07/13/10/13/carryout-bag-156779_1280.png",
             ),
             BottomNavIcon(
-              onTap: () async {
-                if (!await authProvider.signOut()) {
-                  _key.currentState
-                      .showSnackBar(SnackBar(content: Text("Logged Out!")));
-                  return;
-                }
-                authProvider.cleanControllers();
+              onTap: () {
+                authProvider.signOut();
                 changeScreenReplacement(context, RegisterScreen());
               },
               name: "Account",
