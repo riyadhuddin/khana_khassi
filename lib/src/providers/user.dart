@@ -1,18 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:khana_khassi/src/models/cart_item.dart';
+import 'package:khana_khassi/src/models/order.dart';
+import 'package:khana_khassi/src/models/products.dart';
 import 'package:khana_khassi/src/models/user.dart';
+import 'package:khana_khassi/src/services/order.dart';
 import 'package:khana_khassi/src/services/user.dart';
+import 'package:uuid/uuid.dart';
 
-enum Status { Uninitialized, Unauthenticated, Authenticating, Authenticated }
+enum Status { Uninitialized, Authenticated, Authenticating, Unauthenticated }
 
-class AuthProvider with ChangeNotifier {
+class UserProvider with ChangeNotifier {
   FirebaseAuth _auth;
   FirebaseUser _user;
   Status _status = Status.Uninitialized;
   Firestore _firestore = Firestore.instance;
   UserServices _userServices = UserServices();
-
+  OrderServices _orderServices = OrderServices();
   UserModel _userModel;
 
   //getters
@@ -22,6 +27,9 @@ class AuthProvider with ChangeNotifier {
 
   FirebaseUser get user => _user;
 
+  //public var
+  List<OrderModel> orders = [];
+
   final formkey = GlobalKey<FormState>();
 
   TextEditingController email = TextEditingController();
@@ -29,7 +37,7 @@ class AuthProvider with ChangeNotifier {
   TextEditingController password = TextEditingController();
 
   //constructor auth initialize
-  AuthProvider.initialize() : _auth = FirebaseAuth.instance {
+  UserProvider.initialize() : _auth = FirebaseAuth.instance {
     _auth.onAuthStateChanged.listen(_onStateChanged);
   }
 
@@ -58,6 +66,8 @@ class AuthProvider with ChangeNotifier {
           "name": name.text,
           "email": email.text,
           "uid": result.user.uid,
+          "likedProduct": [],
+          "likedBrands": [],
         });
       });
       /* .then((user) {
@@ -78,7 +88,12 @@ class AuthProvider with ChangeNotifier {
     _auth.signOut();
     _status = Status.Unauthenticated;
     notifyListeners();
-    return Future.delayed(Duration(microseconds: 1)); //duration.zero
+    return Future.delayed(Duration.zero); //duration.zero
+  }
+
+  Future<void> reloadUserModel() async {
+    _userModel = await _userServices.getUserById(user.uid);
+    notifyListeners();
   }
 
   Future<void> _onStateChanged(FirebaseUser firebaseUser) async {
@@ -87,9 +102,58 @@ class AuthProvider with ChangeNotifier {
     } else {
       _user = firebaseUser;
       _status = Status.Authenticated;
-      _userModel = await _userServices.getUserById(firebaseUser.uid);
+      _userModel = await _userServices.getUserById(user.uid);
     }
     notifyListeners(); // notify that user is changed
+  }
+
+  //add to cart
+  Future<bool> addToCart({ProductModel product, int quantity}) async {
+    print("The product is: ${product.toString()}");
+    print("The qty is: ${quantity.toString()}");
+    try {
+      var uuid = Uuid();
+      String cartItemId = uuid.v4();
+      List cart = _userModel.cart;
+      //bool itemExists = false
+      Map cartItem = {
+        "id": cartItemId,
+        "name": product.name,
+        "image": product.image,
+        "brandId": product.brandId,
+        "totalBrandSale": product.price * quantity,
+        "productId": product.id,
+        "price": product.price,
+        "quantity": quantity,
+      };
+      CartItemModel item = CartItemModel.fromMap(cartItem);
+      //if itemexists
+      print("Cart Items are: ${cart.toString()}");
+      _userServices.addToCart(userId: _user.uid, cartItem: item);
+      return true;
+    } catch (e) {
+      print("THE ERROR ${e.toString()}");
+      return false;
+    }
+  }
+
+  //get order method
+  getOrders() async {
+    orders = await _orderServices.getUserOrders(userId: _user.uid);
+    notifyListeners();
+  }
+
+  //remove from cart
+
+  Future<bool> removeFromCart({CartItemModel cartItem}) async {
+    print("The product is: ${cartItem.toString()}");
+    try {
+      _userServices.removeFromCart(userId: _user.uid, cartItem: cartItem);
+      return true;
+    } catch (e) {
+      print("THE ERROR ${e.toString()}");
+      return false;
+    }
   }
 
   //Extra Methods

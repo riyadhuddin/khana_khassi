@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:khana_khassi/src/utils/common_colors.dart';
 import 'package:khana_khassi/src/utils/screen_navigation.dart';
-import 'package:khana_khassi/src/providers/auth.dart';
+import 'package:khana_khassi/src/providers/user.dart';
 import 'package:khana_khassi/src/screens/bag.dart';
 import 'package:khana_khassi/src/screens/register.dart';
 import 'package:khana_khassi/src/widgets/CustomText.dart';
@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
+    final userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
       key: _key,
       appBar: AppBar(
@@ -72,13 +72,13 @@ class _HomePageState extends State<HomePage> {
                 height: MediaQuery.of(context).size.width,
               ),
               accountName: CustomText(
-                text: authProvider.userModel?.name,
+                text: userProvider.userModel?.name,
                 color: white,
                 weight: FontWeight.bold,
                 size: 18,
               ),
               accountEmail: CustomText(
-                text: authProvider.userModel?.email, //it has to be userModel
+                text: userProvider.userModel?.email, //it has to be userModel
                 color: white,
                 weight: FontWeight.bold,
                 size: 18,
@@ -232,7 +232,7 @@ class _HomePageState extends State<HomePage> {
             ),
             BottomNavIcon(
               onTap: () {
-                authProvider.signOut();
+                userProvider.signOut();
                 changeScreenReplacement(context, RegisterScreen());
               },
               name: "Account",
