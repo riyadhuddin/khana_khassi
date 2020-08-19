@@ -42,7 +42,7 @@ class ProductServices {
           .then((result) {
         List<ProductModel> products = [];
         for (DocumentSnapshot product in result.documents) {
-          products.add(ProductModel.fromSnapshot(product))
+          products.add(ProductModel.fromSnapshot(product));
         }
         return products;
       });
