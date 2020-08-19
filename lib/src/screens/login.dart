@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:khana_khassi/src/helpers/common_colors.dart';
-import 'package:khana_khassi/src/helpers/screen_navigation.dart';
+import 'package:khana_khassi/src/utils/common_colors.dart';
+import 'package:khana_khassi/src/utils/screen_navigation.dart';
 import 'package:khana_khassi/src/providers/auth.dart';
 import 'package:khana_khassi/src/screens/home.dart';
 import 'package:khana_khassi/src/screens/register.dart';

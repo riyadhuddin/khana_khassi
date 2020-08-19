@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khana_khassi/src/helpers/common_colors.dart';
+import 'package:khana_khassi/src/utils/common_colors.dart';
 import 'package:khana_khassi/src/models/products.dart';
 import 'package:khana_khassi/src/widgets/CustomText.dart';
 

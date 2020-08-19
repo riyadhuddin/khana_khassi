@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
-import 'package:khana_khassi/src/helpers/common_colors.dart';
+import 'package:khana_khassi/src/utils/common_colors.dart';
 import 'package:khana_khassi/src/models/products.dart';
 import 'package:khana_khassi/src/widgets/CustomText.dart';
 

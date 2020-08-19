@@ -12,6 +12,7 @@ class AuthProvider with ChangeNotifier {
   Status _status = Status.Uninitialized;
   Firestore _firestore = Firestore.instance;
   UserServices _userServices = UserServices();
+
   UserModel _userModel;
 
   //getters

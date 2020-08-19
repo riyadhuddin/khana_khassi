@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:khana_khassi/src/helpers/common_colors.dart';
-import 'package:khana_khassi/src/helpers/screen_navigation.dart';
+import 'package:khana_khassi/src/utils/common_colors.dart';
+import 'package:khana_khassi/src/utils/screen_navigation.dart';
 import 'package:khana_khassi/src/providers/auth.dart';
 import 'package:khana_khassi/src/screens/bag.dart';
 import 'package:khana_khassi/src/screens/register.dart';
