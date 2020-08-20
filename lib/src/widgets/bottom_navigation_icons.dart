@@ -19,11 +19,11 @@ class BottomNavIcon extends StatelessWidget {
           children: <Widget>[
             Image.network(
               "https://cdn.pixabay.com/$image",
-              height: 26,
-              width: 26,
+              height: 20,
+              width: 20,
             ),
             SizedBox(
-              height: 5,
+              height: 2,
             ),
             CustomText(text: name),
           ],

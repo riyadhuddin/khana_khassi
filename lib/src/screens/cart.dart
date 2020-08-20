@@ -42,7 +42,7 @@ class _CartScreenState extends State<CartScreen> {
           : ListView.builder(
               itemCount: user.userModel.cart.length,
               itemBuilder: (_, index) {
-                Padding(
+                return Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Container(
                     height: 120,
@@ -73,6 +73,65 @@ class _CartScreenState extends State<CartScreen> {
                         ),
                         SizedBox(
                           width: 10,
+                        ),
+                        Expanded(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              RichText(
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: user.userModel.cart[index].name +
+                                          "\n",
+                                      style: TextStyle(
+                                        color: black,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          "\$${user.userModel.cart[index].price / 100} \n\n",
+                                      style: TextStyle(
+                                        color: black,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w300,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: "Quantity: ",
+                                      style: TextStyle(
+                                        color: grey,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: user.userModel.cart[index].quantity
+                                          .toString(),
+                                      style: TextStyle(
+                                        color: primary,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              IconButton(
+                                  icon: Icon(
+                                    Icons.delete,
+                                    color: red,
+                                  ),
+                                  onPressed: () async {
+                                    app.changeLoaading();
+                                    bool value = await user.removeFromCart(
+                                        cartItem: user.userModel.cart[index]);
+                                    //code ltr
+                                  }),
+                            ],
+                          ),
                         ),
                       ],
                     ),

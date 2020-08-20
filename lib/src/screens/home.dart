@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final userProvider = Provider.of<UserProvider>(context);
+    final user = Provider.of<UserProvider>(context);
     return Scaffold(
       key: _key,
       appBar: AppBar(
@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
               IconButton(
                   icon: Icon(Icons.shopping_cart),
                   onPressed: () {
-                    changeScreen(context, ShoppingBag());
+                    // changeScreen(context, ShoppingBag());
                   }),
               Positioned(
                 //positioning red dot on icon
@@ -72,13 +72,14 @@ class _HomePageState extends State<HomePage> {
                 height: MediaQuery.of(context).size.width,
               ),
               accountName: CustomText(
-                text: userProvider.userModel?.name,
+                text: user.userModel?.name ?? "username loading",
                 color: white,
                 weight: FontWeight.bold,
                 size: 18,
               ),
               accountEmail: CustomText(
-                text: userProvider.userModel?.email, //it has to be userModel
+                text: user.userModel?.email ?? "user mail loading",
+                //it has to be userModel
                 color: white,
                 weight: FontWeight.bold,
                 size: 18,
@@ -86,7 +87,9 @@ class _HomePageState extends State<HomePage> {
             ),
             //This List tile are click and navigation able buttons
             ListTile(
-              onTap: () {},
+              onTap: () {
+                changeScreen(context, HomePage());
+              },
               leading: Icon(Icons.home),
               title: CustomText(text: "Home"),
             ),
@@ -191,7 +194,7 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 5,
             ),
-            Categories(), // Categories
+            CategoryWidget(), // Categories
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: CustomText(
@@ -225,14 +228,14 @@ class _HomePageState extends State<HomePage> {
             ),
             BottomNavIcon(
               onTap: () {
-                changeScreen(context, ShoppingBag());
+//                changeScreen(context, ShoppingBag());
               },
               name: "Bag",
               image: "photo/2013/07/13/10/13/carryout-bag-156779_1280.png",
             ),
             BottomNavIcon(
               onTap: () {
-                userProvider.signOut();
+                user.signOut();
                 changeScreenReplacement(context, RegisterScreen());
               },
               name: "Account",
