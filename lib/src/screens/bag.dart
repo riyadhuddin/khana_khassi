@@ -1,21 +1,26 @@
+/*
 import 'package:flutter/material.dart';
-import 'package:khana_khassi/src/helpers/common_colors.dart';
+import 'package:khana_khassi/src/utils/common_colors.dart';
 import 'package:khana_khassi/src/models/products.dart';
 import 'package:khana_khassi/src/widgets/CustomText.dart';
 
 class ShoppingBag extends StatefulWidget {
+  final ProductModel product;
+  ShoppingBag({@required this.product});
   @override
   _ShoppingBagState createState() => _ShoppingBagState();
 }
 
 class _ShoppingBagState extends State<ShoppingBag> {
-  Product product = Product(
+  */
+/*ProductModel product = ProductModel(
       name: "Meatball Ravoli",
       price: 5.1,
       rating: 4.2,
       vendor: "Pasta",
       wishList: false,
-      image: "photo/2015/09/30/06/26/meatball-ravioli-964959_1280.jpg");
+      image: "photo/2015/09/30/06/26/meatball-ravioli-964959_1280.jpg");*/ /*
+
 
   @override
   Widget build(BuildContext context) {
@@ -143,3 +148,4 @@ class _ShoppingBagState extends State<ShoppingBag> {
     );
   }
 }
+*/

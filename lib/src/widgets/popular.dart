@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:khana_khassi/src/helpers/common_colors.dart';
+import 'package:khana_khassi/src/utils/common_colors.dart';
 import 'package:khana_khassi/src/widgets/small_floating_button.dart';
 
 class Popular extends StatelessWidget {

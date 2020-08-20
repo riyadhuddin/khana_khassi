@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:khana_khassi/src/helpers/common_colors.dart';
-import 'package:khana_khassi/src/helpers/screen_navigation.dart';
-import 'package:khana_khassi/src/providers/auth.dart';
+import 'package:khana_khassi/src/providers/brand.dart';
+import 'package:khana_khassi/src/providers/category.dart';
+import 'package:khana_khassi/src/providers/product.dart';
+import 'package:khana_khassi/src/utils/common_colors.dart';
+import 'package:khana_khassi/src/utils/screen_navigation.dart';
+import 'package:khana_khassi/src/providers/user.dart';
 import 'package:khana_khassi/src/screens/home.dart';
 import 'package:khana_khassi/src/screens/login.dart';
 import 'package:khana_khassi/src/widgets/CustomText.dart';
@@ -18,39 +21,46 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
+    final userProvider = Provider.of<UserProvider>(context);
+    final categoryProvider = Provider.of<CategoryProvider>(context);
+    final brandProvider = Provider.of<BrandProvider>(context);
+    final productProvider = Provider.of<ProductProvider>(context);
+
     return Scaffold(
       key: _key,
       backgroundColor: white,
-      body: authProvider.status == Status.Authenticating
+      body: userProvider.status == Status.Authenticating
           ? Loading()
           : SingleChildScrollView(
               child: Column(
                 children: [
                   SizedBox(
-                    height: 20,
+                    height: 100,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.network(
                         "https://firebasestorage.googleapis.com/v0/b/foodapp-5dea8.appspot.com/o/kkimg%2Flogo%2Flogo.png?alt=media&token=6edb5258-640f-40a5-a17e-366bc8968ee9",
-                        //height: 240,
-                        //width: 240,
+                        // height: 100,
+                        // width: 100,
                       ),
                       //Image.asset("assets/logo.png", width: 120, height: 120,),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: CustomText(
-                      text: "Welcome to Khana Khassi",
-                      size: 20,
-                      color: red[200],
-                      weight: FontWeight.w600,
-                    ),
-                  ),
-                  SizedBox(
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CustomText(
+                text: "Welcome to Khana Khassi",
+                size: 20,
+                color: red[200],
+                weight: FontWeight.w600,
+              ),
+            ),
+            SizedBox(
                     height: 20,
                   ),
                   Padding(
@@ -60,12 +70,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           border: Border.all(color: grey),
                           borderRadius: BorderRadius.circular(15)),
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 8.0),
+                        padding: const EdgeInsets.only(left: 10),
                         child: TextFormField(
-                          controller: authProvider.name,
+                          controller: userProvider.name,
                           decoration: InputDecoration(
                             border: InputBorder.none,
-                            hintText: "User Name",
+                            hintText: "UserName",
                             icon: Icon(Icons.person),
                           ),
                         ),
@@ -81,7 +91,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: TextFormField(
-                          controller: authProvider.email,
+                          controller: userProvider.email,
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             hintText: "E-mail",
@@ -100,7 +110,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: TextFormField(
-                          controller: authProvider.password,
+                          controller: userProvider.password,
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             hintText: "Password",
@@ -115,18 +125,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: GestureDetector(
                       onTap: () async {
                         print("BTN CLICKED!!!!");
-                        print("BTN CLICKED!!!!");
-                        print("BTN CLICKED!!!!");
-                        print("BTN CLICKED!!!!");
-                        print("BTN CLICKED!!!!");
-                        print("BTN CLICKED!!!!");
 
-                        if (!await authProvider.signUp()) {
+                        if (!await userProvider.signUp()) {
                           _key.currentState.showSnackBar(
                               SnackBar(content: Text("Registration failed!")));
                           return;
                         }
-                        authProvider.cleanControllers();
+                        categoryProvider.loadCategories();
+                        brandProvider.loadBrands();
+                        productProvider.loadProducts();
+                        userProvider.cleanControllers();
                         changeScreenReplacement(context, HomePage());
                       },
                       child: Container(
