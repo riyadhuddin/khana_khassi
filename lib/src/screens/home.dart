@@ -1,6 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:khana_khassi/src/providers/app.dart';
+import 'package:khana_khassi/src/providers/brand.dart';
+import 'package:khana_khassi/src/providers/category.dart';
+import 'package:khana_khassi/src/providers/product.dart';
+import 'package:khana_khassi/src/screens/cart.dart';
 import 'package:khana_khassi/src/utils/common_colors.dart';
 import 'package:khana_khassi/src/utils/screen_navigation.dart';
 import 'package:khana_khassi/src/providers/user.dart';
@@ -19,13 +24,16 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _key = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserProvider>(context);
+    final app = Provider.of<AppProvider>(context);
+    final categoryProvider = Provider.of<CategoryProvider>(context);
+    final brandProvider = Provider.of<BrandProvider>(context);
+    final productProvider = Provider.of<ProductProvider>(context);
+    brandProvider.loadsingleBrand();
     return Scaffold(
-      key: _key,
       appBar: AppBar(
         iconTheme: IconThemeData(color: white),
         backgroundColor: primary[200],
@@ -40,7 +48,7 @@ class _HomePageState extends State<HomePage> {
               IconButton(
                   icon: Icon(Icons.shopping_cart),
                   onPressed: () {
-                    // changeScreen(context, ShoppingBag());
+                    changeScreen(context, CartScreen());
                   }),
               Positioned(
                 //positioning red dot on icon
@@ -66,11 +74,11 @@ class _HomePageState extends State<HomePage> {
               decoration: BoxDecoration(
                 color: primary[200],
               ),
-              currentAccountPicture: Image.network(
+              /* currentAccountPicture: Image.network(
                 "https://firebasestorage.googleapis.com/v0/b/foodapp-5dea8.appspot.com/o/profile%2Fcanthigaster-cicada-278721_640.jpg?alt=media&token=68f9922e-1a13-46fc-bfce-a5b98be5de84",
                 // height lets hope this work for testing
                 height: MediaQuery.of(context).size.width,
-              ),
+              ),*/
               accountName: CustomText(
                 text: user.userModel?.name ?? "username loading",
                 color: white,
@@ -94,7 +102,10 @@ class _HomePageState extends State<HomePage> {
               title: CustomText(text: "Home"),
             ),
             ListTile(
-              onTap: () {},
+              onTap: () async {
+                await user.getOrders();
+                //changeScreen(context, )
+              },
               leading: Icon(Icons.fastfood),
               title: CustomText(text: "Food I like"),
             ),

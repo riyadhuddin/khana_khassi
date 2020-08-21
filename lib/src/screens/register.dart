@@ -40,27 +40,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.network(
-                        "https://firebasestorage.googleapis.com/v0/b/foodapp-5dea8.appspot.com/o/kkimg%2Flogo%2Flogo.png?alt=media&token=6edb5258-640f-40a5-a17e-366bc8968ee9",
-                        // height: 100,
-                        // width: 100,
-                      ),
+                      Image.network("https://i.ibb.co/gZHBbq5/logo.png"
+                          // height: 100,
+                          // width: 100,
+                          ),
                       //Image.asset("assets/logo.png", width: 120, height: 120,),
                     ],
                   ),
-            SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CustomText(
-                text: "Welcome to Khana Khassi",
-                size: 20,
-                color: red[200],
-                weight: FontWeight.w600,
-              ),
-            ),
-            SizedBox(
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CustomText(
+                      text: "Welcome to Khana Khassi",
+                      size: 20,
+                      color: red[200],
+                      weight: FontWeight.w600,
+                    ),
+                  ),
+                  SizedBox(
                     height: 20,
                   ),
                   Padding(

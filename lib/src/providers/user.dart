@@ -63,11 +63,11 @@ class UserProvider with ChangeNotifier {
               email: email.text.trim(), password: password.text.trim())
           .then((result) {
         _firestore.collection('users').document(result.user.uid).setData({
-          "name": name.text,
-          "email": email.text,
-          "uid": result.user.uid,
-          "likedProduct": [],
-          "likedBrands": [],
+          'name': name.text,
+          'email': email.text,
+          'uid': result.user.uid,
+          'likedProduct': [],
+          'likedBrands': [],
         });
       });
       /* .then((user) {
@@ -102,7 +102,8 @@ class UserProvider with ChangeNotifier {
     } else {
       _user = firebaseUser;
       _status = Status.Authenticated;
-      _userModel = await _userServices.getUserById(user.uid);
+      _userModel = await _userServices
+          .getUserById(user.uid); //user changes for fixing Riyadh
     }
     notifyListeners(); // notify that user is changed
   }

@@ -43,8 +43,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.network(
-                        "https://firebasestorage.googleapis.com/v0/b/foodapp-5dea8.appspot.com/o/kkimg%2Flogo%2Flogo.png?alt=media&token=6edb5258-640f-40a5-a17e-366bc8968ee9",
-                        //  height: 120,
+                          "https://i.ibb.co/gZHBbq5/logo.png"
+                          //  height: 120,
                         // width: 120,
                         /* "https://cdn.pixabay.com/photo/2015/08/19/02/27/restaurant-895427_1280.png",
                         height: 240,
