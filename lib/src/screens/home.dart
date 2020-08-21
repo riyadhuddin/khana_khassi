@@ -5,7 +5,11 @@ import 'package:khana_khassi/src/providers/app.dart';
 import 'package:khana_khassi/src/providers/brand.dart';
 import 'package:khana_khassi/src/providers/category.dart';
 import 'package:khana_khassi/src/providers/product.dart';
+import 'package:khana_khassi/src/screens/brand_search.dart';
 import 'package:khana_khassi/src/screens/cart.dart';
+import 'package:khana_khassi/src/screens/login.dart';
+import 'package:khana_khassi/src/screens/order.dart';
+import 'package:khana_khassi/src/screens/product_search.dart';
 import 'package:khana_khassi/src/utils/common_colors.dart';
 import 'package:khana_khassi/src/utils/screen_navigation.dart';
 import 'package:khana_khassi/src/providers/user.dart';
@@ -14,6 +18,7 @@ import 'package:khana_khassi/src/widgets/CustomText.dart';
 import 'package:khana_khassi/src/widgets/bottom_navigation_icons.dart';
 import 'package:khana_khassi/src/widgets/categories.dart';
 import 'package:khana_khassi/src/widgets/feature_product.dart';
+import 'package:khana_khassi/src/widgets/loading.dart';
 import 'package:khana_khassi/src/widgets/popular.dart';
 import 'package:provider/provider.dart';
 
@@ -103,40 +108,44 @@ class _HomePageState extends State<HomePage> {
             ListTile(
               onTap: () async {
                 await user.getOrders();
-                //changeScreen(context, )
+                changeScreen(context, OrdersScreen());
               },
               leading: Icon(Icons.fastfood),
-              title: CustomText(text: "Food I like"),
+              title: CustomText(text: "My Orders"),
             ),
             ListTile(
-              onTap: () {},
-              leading: Icon(Icons.restaurant),
-              title: CustomText(text: "Liked restaurants"),
-            ),
-            ListTile(
-              onTap: () {},
-              leading: Icon(Icons.bookmark_border),
-              title: CustomText(text: "My orders"),
-            ),
-            ListTile(
-              onTap: () {},
+              onTap: () {
+                changeScreen(context, CartScreen());
+              },
               leading: Icon(Icons.shopping_cart),
               title: CustomText(text: "Cart"),
             ),
             ListTile(
-              onTap: () {},
-              leading: Icon(Icons.settings),
-              title: CustomText(text: "Settings"),
+              onTap: () {
+                user.signOut();
+                changeScreenReplacement(context, LoginScreen());
+              },
+              leading: Icon(Icons.exit_to_app),
+              title: CustomText(text: "Log Out"),
             ),
           ],
         ),
       ),
       backgroundColor: white,
-      body: SafeArea(
-        //so items do not messed up
-        child: ListView(
-          children: <Widget>[
-            /*Row(
+      body: app.isLoading
+          ? Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Loading(),
+                ],
+              ),
+            )
+          : SafeArea(
+              //so items do not messed up
+              child: ListView(
+                children: <Widget>[
+                  /*Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Padding(
@@ -188,21 +197,60 @@ class _HomePageState extends State<HomePage> {
                       color: primary[200],
                     ), //trailing
                     title: TextField(
+                      textInputAction: TextInputAction.search,
+                      onSubmitted: (pattern) async {
+                        app.changeLoaading();
+                        if (app.search == SearchBy.PRODUCTS) {
+                          await productProvider.search(productName: pattern);
+                          changeScreen(context, ProductSearchScreen());
+                        } else {
+                          await brandProvider.search(name: pattern);
+                          changeScreen(context, BrandsSearchScreen());
+                        }
+                        app.changeLoaading();
+                      },
                       decoration: InputDecoration(
-                        hintText: "Find foods and restaurants",
+                        hintText: "Find Food and restaurant",
                         border: InputBorder.none,
                       ),
                     ),
-                    trailing: Icon(
-                      Icons.filter_list,
-                      color: primary[200],
-                    ), //trailing
                   ),
                 ),
               ),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                CustomText(
+                  text: "Search by", color: grey, weight: FontWeight.w300,),
+                DropdownButton<String>(
+                  value: app.filterBy,
+                  style: TextStyle(
+                    color: primary,
+                    fontWeight: FontWeight.w300,
+                  ),
+                  icon: Icon(Icons.filter_list, color: primary,),
+                  elevation: 0,
+                  onChanged: (value) {
+                    if (value == "Products") {
+                      app.changeSearchBy(newSearchBy: SearchBy.PRODUCTS);
+                    } else {
+                      app.changeSearchBy(newSearchBy: SearchBy.BRANDS);
+                    }
+                  },
+                  items: <String>["Products", "Restaurants"].map<
+                      DropdownMenuItem<Stringn>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
+              ],
+            ),
+            Divider(),
             SizedBox(
-              height: 5,
+              height: 10,
             ),
             CategoryWidget(), // Categories
             Padding(
