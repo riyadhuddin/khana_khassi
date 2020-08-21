@@ -85,10 +85,10 @@ class BrandsSearchScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () async {
-                        app.changeLoaading();
+                        app.changeLoading();
                         await productProvider.loadProductsByBrand(
                             brandId: brandProvider.searchedBrands[index].id);
-                        app.changeLoaading();
+                        app.changeLoading();
                         changeScreen(
                             context,
                             BrandScreen(

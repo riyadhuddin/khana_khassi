@@ -5,8 +5,10 @@ import 'package:khana_khassi/src/providers/app.dart';
 import 'package:khana_khassi/src/providers/brand.dart';
 import 'package:khana_khassi/src/providers/category.dart';
 import 'package:khana_khassi/src/providers/product.dart';
+import 'package:khana_khassi/src/screens/brand.dart';
 import 'package:khana_khassi/src/screens/brand_search.dart';
 import 'package:khana_khassi/src/screens/cart.dart';
+import 'package:khana_khassi/src/screens/category.dart';
 import 'package:khana_khassi/src/screens/login.dart';
 import 'package:khana_khassi/src/screens/order.dart';
 import 'package:khana_khassi/src/screens/product_search.dart';
@@ -14,8 +16,10 @@ import 'package:khana_khassi/src/utils/common_colors.dart';
 import 'package:khana_khassi/src/utils/screen_navigation.dart';
 import 'package:khana_khassi/src/providers/user.dart';
 import 'package:khana_khassi/src/screens/register.dart';
+import 'package:khana_khassi/src/views/test_featured.dart';
 import 'package:khana_khassi/src/widgets/CustomText.dart';
 import 'package:khana_khassi/src/widgets/bottom_navigation_icons.dart';
+import 'package:khana_khassi/src/widgets/brand.dart';
 import 'package:khana_khassi/src/widgets/categories.dart';
 import 'package:khana_khassi/src/widgets/feature_product.dart';
 import 'package:khana_khassi/src/widgets/loading.dart';
@@ -73,7 +77,7 @@ class _HomePageState extends State<HomePage> {
       ),
       drawer: Drawer(
         child: ListView(
-          children: [
+          children: <Widget>[
             UserAccountsDrawerHeader(
               decoration: BoxDecoration(
                 color: primary[200],
@@ -84,13 +88,13 @@ class _HomePageState extends State<HomePage> {
                 height: MediaQuery.of(context).size.width,
               ),*/
               accountName: CustomText(
-                text: user.userModel?.name ?? "username loading",
+                text: user.user?.uid,
                 color: white,
                 weight: FontWeight.bold,
                 size: 18,
               ),
               accountEmail: CustomText(
-                text: user.userModel?.email ?? "user mail loading",
+                text: user.user?.email,
                 //it has to be userModel
                 color: white,
                 weight: FontWeight.bold,
@@ -199,16 +203,17 @@ class _HomePageState extends State<HomePage> {
                     title: TextField(
                       textInputAction: TextInputAction.search,
                       onSubmitted: (pattern) async {
-                        app.changeLoaading();
-                        if (app.search == SearchBy.PRODUCTS) {
-                          await productProvider.search(productName: pattern);
-                          changeScreen(context, ProductSearchScreen());
-                        } else {
-                          await brandProvider.search(name: pattern);
-                          changeScreen(context, BrandsSearchScreen());
-                        }
-                        app.changeLoaading();
-                      },
+                        app.changeLoading();
+                              if (app.search == SearchBy.PRODUCTS) {
+                                await productProvider.search(
+                                    productName: pattern);
+                                changeScreen(context, ProductSearchScreen());
+                              } else {
+                                await brandProvider.search(name: pattern);
+                                changeScreen(context, BrandsSearchScreen());
+                              }
+                              app.changeLoading();
+                            },
                       decoration: InputDecoration(
                         hintText: "Find Food and restaurant",
                         border: InputBorder.none,
@@ -239,7 +244,7 @@ class _HomePageState extends State<HomePage> {
                     }
                   },
                   items: <String>["Products", "Restaurants"].map<
-                      DropdownMenuItem<Stringn>>((String value) {
+                      DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
                       child: Text(value),
@@ -248,30 +253,84 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            Divider(),
-            SizedBox(
-              height: 10,
-            ),
-            CategoryWidget(), // Categories
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CustomText(
-                text: "Featured",
-                size: 20,
-                color: grey,
-              ),
-            ),
-            Featured(), //featured products
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CustomText(
-                text: "Popular Products",
-                size: 20,
-                color: grey,
-              ),
-            ),
-            Popular(), //Popular products here
-          ],
+                  Divider(),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    height: 100,
+                    child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: categoryProvider.categories.length,
+                        itemBuilder: (_, index) {
+                          return GestureDetector(
+                            onTap: () async {
+                              app.changeLoading();
+                              await productProvider.loadProductsByCategory(
+                                  categoryName: categoryProvider
+                                      .categories[index].name
+                              );
+                              changeScreen(context, CategoryScreen(
+                                categoryModel: categoryProvider
+                                    .categories[index],
+                              ));
+                              app.changeLoading();
+                            },
+                            child: CategoryWidget(
+                              category: categoryProvider.categories[index],
+                            ),
+                          );
+                        }
+                    ),
+                  ),
+                  SizedBox(height: 5,),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomText(
+                          text: "Featured",
+                          size: 20,
+                          color: grey,
+                        ),
+                      ],
+                    ),
+                  ),
+                  TestFeatured(), //manually featuring
+                  //Featured(),
+
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomText(
+                          text: "Popular restaurants",
+                          size: 20,
+                          color: grey,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Column(
+                    children: brandProvider.brands.map((item) =>
+                        GestureDetector(
+                          onTap: () async {
+                            app.changeLoading();
+                            await productProvider.loadProductsByBrand(
+                                brandId: item.id
+                            );
+                            app.changeLoading();
+                            changeScreen(context, BrandScreen(
+                              brandModel: item,
+                            ));
+                          },
+                          child: BrandWidget(brand: item,),
+                        )).toList(),
+                  ),
+                  // Popular(), //Popular products here
+                ],
         ),
       ),
       bottomNavigationBar: Container(

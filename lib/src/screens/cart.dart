@@ -125,7 +125,7 @@ class _CartScreenState extends State<CartScreen> {
                                     color: red,
                                   ),
                                   onPressed: () async {
-                                    app.changeLoaading();
+                                    app.changeLoading();
                                     bool value = await user.removeFromCart(
                                         cartItem: user.userModel.cart[index]);
                                     //code ltr

@@ -109,7 +109,7 @@ class _DetailsState extends State<Details> {
                           }),
                       GestureDetector(
                         onTap: () async {
-                          app.changeLoaading();
+                          app.changeLoading();
                           print("All set loading");
                           bool value = await user.addToCart(
                               product: widget.product, quantity: quantity);
@@ -121,7 +121,7 @@ class _DetailsState extends State<Details> {
                               ),
                             );
                             user.reloadUserModel();
-                            app.changeLoaading();
+                            app.changeLoading();
                             return;
                           } else {
                             print("item is not added");

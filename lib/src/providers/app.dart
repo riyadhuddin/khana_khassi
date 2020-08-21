@@ -10,7 +10,7 @@ class AppProvider with ChangeNotifier {
   int priceSum = 0;
   int quantitySum = 0;
 
-  void changeLoaading() {
+  void changeLoading() {
     isLoading = !isLoading;
     notifyListeners();
   }
