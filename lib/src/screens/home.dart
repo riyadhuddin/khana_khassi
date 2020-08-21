@@ -9,7 +9,6 @@ import 'package:khana_khassi/src/screens/cart.dart';
 import 'package:khana_khassi/src/utils/common_colors.dart';
 import 'package:khana_khassi/src/utils/screen_navigation.dart';
 import 'package:khana_khassi/src/providers/user.dart';
-import 'package:khana_khassi/src/screens/bag.dart';
 import 'package:khana_khassi/src/screens/register.dart';
 import 'package:khana_khassi/src/widgets/CustomText.dart';
 import 'package:khana_khassi/src/widgets/bottom_navigation_icons.dart';
