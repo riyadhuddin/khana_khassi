@@ -22,7 +22,7 @@ class AppProvider with ChangeNotifier {
     } else {
       filterBy = "Brands";
     }
-    newSearchBy;
+    notifyListeners();
   }
 
   addPrice({int newPrice}) {

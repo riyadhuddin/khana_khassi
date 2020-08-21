@@ -25,7 +25,7 @@ class BrandProvider with ChangeNotifier {
 
   Future search(String name) async {
     searchedBrands = await _brandServices.searchBrand(brandName: name);
-    //print(":${searchedBrands.length}");
+    print("Searched items are :${searchedBrands.length}");
     //fututre use case
     notifyListeners();
   }
