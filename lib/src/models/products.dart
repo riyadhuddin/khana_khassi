@@ -66,6 +66,6 @@ class ProductModel {
     _price = snapshot.data[PRICE].floor();
     _rates = snapshot.data[rates];
     _featured = snapshot.data[FEATURED];
-    //liked = snapshot.data[USER_LIKES];
+    liked = snapshot.data[USER_LIKES];
   }
 }

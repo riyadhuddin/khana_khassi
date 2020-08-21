@@ -45,6 +45,6 @@ class OrderModel {
     _userId = snapshot.data[USER_ID];
     _createdAt = snapshot.data[CREATED_AT];
     _brandId = snapshot.data[BRAND_ID];
-    cart = snapshot.data[cart];
+    cart = snapshot.data[CART];
   }
 }
