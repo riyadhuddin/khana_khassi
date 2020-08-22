@@ -4,4 +4,4 @@ container:
 test_task:
   pub_cache:
     folder: ~/.pub-cache
-  test_script: flutter -h
+  test_script: flutter run
