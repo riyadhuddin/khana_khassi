@@ -23,6 +23,21 @@ It has three parts.
   <td valign="top"><img src="assets/screenshots/UI_Photo/reg.png" width=270 height=480></td>
   <td valign="top"><img src="assets/screenshots/UI_Photo/log.png" width=270 height=480></td>
   </tr>
+  <tr>
+    
+  <td>Add to Cart</td>
+  <td>Order</td>
+  <td>Home</td>
+  </tr>
+  <tr>
+  <td valign="top"><img src="assets/screenshots/UI_Photo/s3.png" width=270 height=480></td>
+   <td valign="top"><img src="assets/screenshots/UI_Photo/s6.png" width=270 height=480></td>
+   <td valign="top"><img src="assets/screenshots/UI_Photo/s7.png" width=270 height=480></td>
+  </tr>
+  </tr>
+  </tr>
+  
+  </tr>
  </table>
  
  
