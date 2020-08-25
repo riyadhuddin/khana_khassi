@@ -30,7 +30,8 @@ void main() {
       home: ScreenController(),
       //LoginScreen(),
     ),
-  ));
+  )
+  );
 }
 
 class ScreenController extends StatelessWidget {

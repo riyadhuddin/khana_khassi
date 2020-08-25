@@ -41,13 +41,13 @@ class BrandModel {
   bool liked = false;
 
   BrandModel.fromSnapshot(DocumentSnapshot snapshot) {
-    _id = snapshot.data[ID];
-    _name = snapshot.data[NAME];
-    _image = snapshot.data[IMAGE];
-    _userLikes = snapshot.data[USER_LIKES];
-    _rating = snapshot.data[RATING];
-    _avgPrice = snapshot.data[AVG_PRICE];
-    _popular = snapshot.data[POPULAR];
-    _rates = snapshot.data[RATES];
+    _id = snapshot.data()[ID];
+    _name = snapshot.data()[NAME];
+    _image = snapshot.data()[IMAGE];
+    _userLikes = snapshot.data()[USER_LIKES];
+    _rating = snapshot.data()[RATING];
+    _avgPrice = snapshot.data()[AVG_PRICE];
+    _popular = snapshot.data()[POPULAR];
+    _rates = snapshot.data()[RATES];
   }
 }
