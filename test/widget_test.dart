@@ -9,12 +9,38 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:khana_khassi/main.dart';
+import 'package:khana_khassi/src/providers/app.dart';
+import 'package:khana_khassi/src/providers/brand.dart';
+import 'package:khana_khassi/src/providers/category.dart';
+import 'package:khana_khassi/src/providers/product.dart';
+import 'package:khana_khassi/src/providers/user.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
-
+    await tester.pumpWidget(
+    (
+      MultiProvider(providers: [
+      ChangeNotifierProvider.value(value: AppProvider()),
+      ChangeNotifierProvider.value(value: UserProvider.initialize()),
+      ChangeNotifierProvider.value(value: CategoryProvider.initialize()),
+      ChangeNotifierProvider.value(value: BrandProvider.initialize()),
+      ChangeNotifierProvider.value(value: ProductProvider.initialize()),
+    ], child: Builder(builder: (_)=> MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Khana Khassi',
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: ScreenController(),
+      //LoginScreen(),
+    ),
+  ),
+  )
+    )
+    );
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
     expect(find.text('1'), findsNothing);

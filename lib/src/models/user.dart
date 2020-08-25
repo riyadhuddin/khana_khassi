@@ -32,14 +32,14 @@ class UserModel {
   int totalCartPrice;
 
   UserModel.fromSnapshot(DocumentSnapshot snapshot) {
-    _name = snapshot.data[NAME];
-    _email = snapshot.data[Email];
-    _id = snapshot.data[ID];
-    _bkashId = snapshot.data[BKASH_ID];
-    cart = _convertCartItems(snapshot.data[cart]) ?? [];
-    totalCartPrice = snapshot.data[CART] == null
+    _name = snapshot.data()[NAME];
+    _email = snapshot.data()[Email];
+    _id = snapshot.data()[ID];
+    _bkashId = snapshot.data()[BKASH_ID];
+    cart = _convertCartItems(snapshot.data()[cart]) ?? [];
+    totalCartPrice = snapshot.data()[CART] == null
         ? 0
-        : getTotalPrice(cart: snapshot.data[CART]);
+        : getTotalPrice(cart: snapshot.data()[CART]);
   }
 
   int getTotalPrice({List cart}) {

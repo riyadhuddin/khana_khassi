@@ -55,17 +55,17 @@ class ProductModel {
   bool liked = false;
 
   ProductModel.fromSnapshot(DocumentSnapshot snapshot) {
-    _id = snapshot.data[ID];
-    _name = snapshot.data[NAME];
-    _image = snapshot.data[IMAGE];
-    _brand = snapshot.data[BRAND];
-    _brandId = snapshot.data[BRAND_ID].toString();
-    _description = snapshot.data[DESCRIPTION];
-    _category = snapshot.data[CATEGORY];
-    _rating = snapshot.data[RATING];
-    _price = snapshot.data[PRICE].floor();
-    _rates = snapshot.data[rates];
-    _featured = snapshot.data[FEATURED];
-    liked = snapshot.data[USER_LIKES];
+    _id = snapshot.data()[ID];
+    _name = snapshot.data()[NAME];
+    _image = snapshot.data()[IMAGE];
+    _brand = snapshot.data()[BRAND];
+    _brandId = snapshot.data()[BRAND_ID].toString();
+    _description = snapshot.data()[DESCRIPTION];
+    _category = snapshot.data()[CATEGORY];
+    _rating = snapshot.data()[RATING];
+    _price = snapshot.data()[PRICE].floor();
+    _rates = snapshot.data()[rates];
+    _featured = snapshot.data()[FEATURED];
+    liked = snapshot.data()[USER_LIKES];
   }
 }

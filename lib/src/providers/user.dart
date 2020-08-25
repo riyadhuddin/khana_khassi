@@ -13,9 +13,9 @@ enum Status { Uninitialized, Authenticated, Authenticating, Unauthenticated }
 
 class UserProvider with ChangeNotifier {
   FirebaseAuth _auth;
-  FirebaseUser _user;
+  User _user;
   Status _status = Status.Uninitialized;
-  Firestore _firestore = Firestore.instance;
+  FirebaseFirestore _firestore = FirebaseFirestore.instance;
   UserServices _userServices = UserServices();
   OrderServices _orderServices = OrderServices();
   UserModel _userModel;
@@ -25,7 +25,7 @@ class UserProvider with ChangeNotifier {
 
   Status get status => _status;
 
-  FirebaseUser get user => _user;
+  User get user => _user;
 
   //public var
   List<OrderModel> orders = [];
@@ -38,7 +38,7 @@ class UserProvider with ChangeNotifier {
 
   //constructor auth initialize
   UserProvider.initialize() : _auth = FirebaseAuth.instance {
-    _auth.onAuthStateChanged.listen(_onStateChanged);
+    _auth.authStateChanges().listen(_onStateChanged);
   }
 
   //signin
@@ -62,7 +62,7 @@ class UserProvider with ChangeNotifier {
           .createUserWithEmailAndPassword(
               email: email.text.trim(), password: password.text.trim())
           .then((result) {
-        _firestore.collection('users').document(result.user.uid).setData({
+        _firestore.collection('users').doc(result.user.uid).set({
           'name': name.text,
           'email': email.text,
           'uid': result.user.uid,
@@ -96,7 +96,7 @@ class UserProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> _onStateChanged(FirebaseUser firebaseUser) async {
+  Future<void> _onStateChanged(User firebaseUser) async {
     if (firebaseUser == null) {
       _status = Status.Unauthenticated;
     } else {
