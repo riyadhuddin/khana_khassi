@@ -1,5 +1,5 @@
 # khana_khassi
-## This project is archived as I don't have time to do further development
+## This project is depriciated as I don't have time to do further development
 A food ordering application,
 It has three parts.
 1. Restaurant owner - List foods and price, Coupon, reward points, featuring.
