@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:khana_khassi/src/models/brand.dart';
 import 'package:khana_khassi/src/providers/product.dart';
 import 'package:khana_khassi/src/screens/details.dart';
@@ -178,7 +177,7 @@ class BrandScreen extends StatelessWidget {
                   size: 18,
                 ),
                 Container(
-                  child: FlatButton.icon(
+                  child: TextButton.icon(
                     onPressed: () {},
                     icon: Icon(Icons.restaurant_menu),
                     label: CustomText(text: "Book now"),

@@ -3,14 +3,15 @@ import 'package:khana_khassi/src/models/category.dart';
 
 class CategoryServices {
   String collection = "categories";
-  Firestore _firestore = Firestore.instance;
+  FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Future<List<CategoryModel>> getCategories() async =>
-      _firestore.collection(collection).getDocuments().then((result) {
-        List<CategoryModel> categories = [];
-        for (DocumentSnapshot category in result.documents) {
-          categories.add(CategoryModel.fromSnapshot(category));
-        }
-        return categories;
-      });
+  
+  Future<List<CategoryModel>> getCategories() async {
+    List<CategoryModel> categories = [];
+    QuerySnapshot snapshot = await _firestore.collection(collection).get();
+    snapshot.docs.forEach((doc) {
+      categories.add(CategoryModel.fromSnapshot(doc));
+    });
+    return categories;
+  }
 }

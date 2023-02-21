@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:khana_khassi/src/providers/app.dart';
 import 'package:khana_khassi/src/providers/user.dart';
@@ -115,7 +114,8 @@ class _DetailsState extends State<Details> {
                               product: widget.product, quantity: quantity);
                           if (value) {
                             print("Item in cart");
-                            _key.currentState.showSnackBar(
+                            // _key.currentState. is depricated
+                            ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text("add to cart!"),
                               ),

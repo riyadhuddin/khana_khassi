@@ -41,3 +41,14 @@ app.*.map.json
 
 # Exceptions to above rules.
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+# remove build folder
+ios/
+linux/
+web/
+windows/
+macos/
+ios
+linux
+web
+windows
+macos
