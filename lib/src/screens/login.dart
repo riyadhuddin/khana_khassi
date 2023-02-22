@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:khana_khassi/src/providers/brand.dart';
 import 'package:khana_khassi/src/providers/category.dart';
@@ -125,8 +124,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: GestureDetector(
                       onTap: () async {
                         if (!await userProvider.signIn()) {
-                          _key.currentState.showSnackBar(
-                              SnackBar(content: Text("Login failed!")));
+                          //_key.currentState
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(
+                                  SnackBar(content: Text("Login failed!")));
                           return;
                         }
                         categoryProvider.loadCategories();

@@ -4,7 +4,7 @@ import 'package:khana_khassi/src/models/order.dart';
 
 class OrderServices {
   String collection = "orders";
-  Firestore _firestore = Firestore.instance;
+  FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   void createOrder(
       {String userId,
@@ -19,7 +19,7 @@ class OrderServices {
       convertedCart.add(item.toMap());
       brandIds.add(item.brandId);
     }
-    _firestore.collection(collection).document(id).setData({
+    _firestore.collection(collection).doc(id).set({
       "userId": userId,
       "id": id,
       "brandIds": brandIds,
@@ -29,17 +29,18 @@ class OrderServices {
       "description": description,
       "status": status,
     });
+    
   }
 
-  Future<List<OrderModel>> getUserOrders({String userId}) async => _firestore
-          .collection(collection)
-          .where("userId", isEqualTo: userId)
-          .getDocuments()
-          .then((result) {
-        List<OrderModel> orders = [];
-        for (DocumentSnapshot order in result.documents) {
-          orders.add(OrderModel.fromSnapshot(order));
-        }
-        return orders;
-      });
+  Future<List<OrderModel>> getUserOrders({String userId}) async {
+    List<OrderModel> orders = [];
+    QuerySnapshot snapshot = await _firestore
+        .collection(collection)
+        .where("userId", isEqualTo: userId)
+        .get();
+    snapshot.docs.forEach((doc) {
+      orders.add(OrderModel.fromSnapshot(doc));
+    });
+    return orders;
+  }
 }

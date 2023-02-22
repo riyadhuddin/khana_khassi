@@ -126,7 +126,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         print("BTN CLICKED!!!!");
 
                         if (!await userProvider.signUp()) {
-                          _key.currentState.showSnackBar(
+                          //_key.currentState
+                          ScaffoldMessenger.of(context)
+                          .showSnackBar(
                               SnackBar(content: Text("Registration failed!")));
                           return;
                         }
